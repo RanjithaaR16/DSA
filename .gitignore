@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/DSA Projects/obj
+/DSA Projects/.vs/DSA Projects
+*.sln
+/DSA Projects/bin/Debug/net6.0
