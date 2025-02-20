@@ -14,11 +14,11 @@ namespace DSA_Projects.Problems.Arrays
             int[] leftMax = new int[height.Length];
             int[] rightMax = new int[height.Length];
             int totalWater = 0;
-            
+
             leftMax[0] = height[0];
             for (int i = 1; i < height.Length; i++)
             {
-                leftMax[i] = Math.Max( leftMax[i - 1] , height[i]);
+                leftMax[i] = Math.Max(leftMax[i - 1], height[i]);
             }
 
             rightMax[height.Length - 1] = height[height.Length - 1];
@@ -27,17 +27,79 @@ namespace DSA_Projects.Problems.Arrays
                 rightMax[i] = Math.Max(rightMax[i + 1], height[i]);
             }
 
-            for (int i = 0; i < height.Length -1; i++)
+            for (int i = 0; i < height.Length - 1; i++)
             {
                 totalWater += Math.Min(leftMax[i], rightMax[i]) - height[i];
             }
             return totalWater;
         }
 
+        //Two pointer approach
+        public static int ExecuteTwoPointer(int[] height)
+        {
+            int left = 0;
+            int right = height.Length - 1;
+            int leftMax = height[left];
+            int rightMax = height[right];
+            int totalWater = 0;
+
+            while (left < right)
+            {
+                if (leftMax <= rightMax)
+                {
+                    totalWater += Math.Min(leftMax, rightMax) - height[left];
+                    left++;
+                    leftMax = Math.Max(leftMax, height[left]);
+                }
+                else
+                {
+                    totalWater += Math.Min(leftMax, rightMax) - height[right];
+                    right--;
+                    rightMax = Math.Max(rightMax, height[right]);
+
+                }
+            }
+
+            return totalWater;
+        }
+
+        //Two pointer approach -  Efficient approach
+        public static int ExecuteTwoPointerApproach2(int[] height)
+        {
+            int left = 0;
+            int right = height.Length - 1;
+            int leftMax = 0;
+            int rightMax = 0;
+            int totalWater = 0;
+
+            while (left < right)
+            {
+                if (height[left] <= height[right])
+                {
+                    if(leftMax <= height[left])
+                        leftMax = height[left];
+                    else
+                        totalWater += leftMax - height[left];
+                    left++;
+
+                }
+                else
+                {
+                    if(rightMax <= height[right])
+                        rightMax = height[right];
+                    else
+                        totalWater += rightMax - height[right];
+                    right--;
+
+                }
+            }
+            return totalWater;
+        }
+
         public static int Run()
         {
-            int[] height = { 4, 2, 0, 3, 2, 5 };
-            return Execute(height);
+            int[] height = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+            return ExecuteTwoPointerApproach2(height);
         }
     }
 }
