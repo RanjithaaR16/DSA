@@ -14,6 +14,9 @@ namespace DSA_Projects
             Console.WriteLine("4. Intersection of two arrays");
             Console.WriteLine("5. Difference of two arrays");
             Console.WriteLine("6. Find duplicates in arrays");
+            Console.WriteLine("7. Find median in arrays");
+            Console.WriteLine("8. Container with most water");
+            Console.WriteLine("9. Trapping Water problem");
             int selection = Convert.ToInt16(Console.ReadLine());
             switch(selection)
             {
@@ -40,6 +43,18 @@ namespace DSA_Projects
                 case 6:
                     IList<int> duplicates = FindDuplicatesinArray.Run();
                     Console.WriteLine("Duplicates in arrays: " + duplicates);
+                    break;
+                case 7:
+                    double median = FindMedianOfArray.Run();
+                    Console.WriteLine("Median in arrays: " + median);
+                    break;
+                case  8:
+                    int maxWater = ContainerWithMostWater.Run();
+                    Console.WriteLine("Container With most water: " + maxWater);
+                    break;
+                case 9:
+                    int trappingWater = TrappingRainWater.Run();
+                    Console.WriteLine("Trapping rain water: " + trappingWater);
                     break;
             }
 
